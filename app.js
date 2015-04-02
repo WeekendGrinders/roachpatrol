@@ -1,18 +1,12 @@
-/*
+//Kept getting a cross origin error with the code below and also Uncaught SyntaxError: Unexpected token :
+
 function go() {
-	$.ajax({ url: 'http://api.civicapps.org/restaurant-inspections', type: 'GET', 	dataType: 'jsonp',
+	$.ajax({ url: "http://api.civicapps.org/restaurant-inspections", type: "GET", 	dataType: "jsonp",
 	 success: (function(data) {
-			console.log('hello');
+			console.log('success');
 	 })
 	})
 }
 
-*/
 
-function go() {
-$.getJSON("apidata.js", function(data){
-	      $.each(data, function(key, val){
-        $("body").append('<h3>' + key + ":" + " " + val + '</h3>');
-				});
-		});
-}
+
