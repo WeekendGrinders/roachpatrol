@@ -1,0 +1,25 @@
+/* Site specific CSS */
+
+/* Overlay */
+
+
+#overlay {
+	background: #E0EBEB;
+	opacity: 0.8;
+ 	width:1250px;
+ 	height:100%;
+	position:absolute;
+ 	top:0;
+ 	left:50px;
+ 	display:none;
+ 	text-align: center;
+}
+
+
+#overlay p {
+	font-size: 30px;
+	margin-top: 300px;
+}
+
+
+
