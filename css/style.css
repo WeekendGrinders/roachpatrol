@@ -11,7 +11,6 @@
 	position:absolute;
  	top:0;
  	left:50px;
- 	display:none;
  	text-align: center;
 }
 
@@ -19,6 +18,12 @@
 #overlay p {
 	font-size: 30px;
 	margin-top: 300px;
+}
+
+.form-group {
+	width: 30%;
+	margin: 0 auto;
+	margin-top: 10%;
 }
 
 
