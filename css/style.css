@@ -26,5 +26,13 @@
 	margin-top: 10%;
 }
 
+#map-canvas {
+	width: 500px;
+	height: 500px;
+	margin: 0; 
+	padding: 0;
+	border: 2px solid black;
+}
+
 
 
