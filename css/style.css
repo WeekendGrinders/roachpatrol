@@ -1,17 +1,22 @@
 /* Site specific CSS */
 
+body {
+	margin-bottom: 5%;
+}
+
 /* Overlay */
 
 
 #overlay {
 	background: #E0EBEB;
 	opacity: 0.8;
- 	width:1250px;
- 	height:100%;
-	position:absolute;
- 	top:0;
- 	left:50px;
- 	text-align: center;
+ 	width:30%;
+ 	position: absolute;
+ 	top: 10%;
+ 	left: 33%;	
+	padding-top: 5%;
+	padding-bottom: 5%;	
+	text-align: center;
 }
 
 

@@ -39,13 +39,13 @@ function initialize() {
 		    map: map
 		  	});
   		}
-
+/*
    		google.maps.event.addListener(marker, 'click', (function (marker, i) {
         return function () {
             infowindow.setContent(locations[i][0]);
             infowindow.open(map, marker);
         		}
-    			})(marker, i));
+    			})(marker, i)); */
 			})
 
   var map = new google.maps.Map(document.getElementById('map-canvas'),
@@ -58,7 +58,7 @@ function initialize() {
 var locations = [
         ['Portland',  45.5236111, -122.675, 4],
         ['Pittok Mansion', 45.5250, -122.7164],
-        ['Council Crest', 45.5001, -122.7093]
+        ['Council Crest', 45.5001, -122.7093	]
     ];
     
 
