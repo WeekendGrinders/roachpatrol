@@ -1,12 +1,4 @@
-$(document).ready(function() {
-	//$('#overlay').show();
-	})
-
-
-$('button').click(function(){
-	$('#overlay').hide();
-});
-
+//not needed?
 function getZip() {
 	var x = document.getElementById("zip").value;
 	google.maps.event.addDomListener(window, 'load', initialize);
@@ -15,13 +7,27 @@ function getZip() {
 var geocoder;
 var marker, i;
 
+function pageTwo() {
+//target button to load page 2
+	$('#formbutton').click(function (){
+		location.href="page2.html";
+	}) 
+};
+
 function initialize() {
+	
+
+	var selectedValue = $('#dropdown').val();
+	console.log(selectedValue);
+
+	pageTwo();
+
 	geocoder = new google.maps.Geocoder();
 	var mapOptions = {
     zoom: 14
   };
 	geocoder.geocode({
-	address: document.getElementById("zip").value
+	address: '97212' //document.getElementById("zip").value
 	}, function(results, status){
 		if(status == google.maps.GeocoderStatus.OK) {
 			map.setCenter(results[0].geometry.location);
@@ -47,6 +53,7 @@ function initialize() {
         		}
     			})(marker, i)); */
 			})
+
 
   var map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
