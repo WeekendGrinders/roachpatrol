@@ -17,10 +17,9 @@ function pageTwo() {
 function initialize() {
 	
 
-	var selectedValue = $('#dropdown').val();
-	console.log(selectedValue);
+	// var selectedValue = $('#dropdown').val();
+	// console.log(selectedValue);
 
-	pageTwo();
 
 	geocoder = new google.maps.Geocoder();
 	var mapOptions = {
@@ -53,6 +52,7 @@ function initialize() {
         		}
     			})(marker, i)); */
 			})
+
 
 
   var map = new google.maps.Map(document.getElementById('map-canvas'),
