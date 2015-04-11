@@ -7,18 +7,14 @@ function getZip() {
 var geocoder;
 var marker, i;
 
-function pageTwo() {
-//target button to load page 2
-	$('#formbutton').click(function (){
-		location.href="page2.html";
-	}) 
-};
+var selectedValue = $('#dropdown').val();
+
+
 
 function initialize() {
 	
 
-	// var selectedValue = $('#dropdown').val();
-	// console.log(selectedValue);
+	
 
 
 	geocoder = new google.maps.Geocoder();
@@ -26,7 +22,7 @@ function initialize() {
     zoom: 14
   };
 	geocoder.geocode({
-	address: '97212' //document.getElementById("zip").value
+	address: '97203'
 	}, function(results, status){
 		if(status == google.maps.GeocoderStatus.OK) {
 			map.setCenter(results[0].geometry.location);
