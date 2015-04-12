@@ -1,7 +1,13 @@
 //not needed?
-function getZip() {
-	var x = document.getElementById("zip").value;
-	google.maps.event.addDomListener(window, 'load', initialize);
+function getZip(url) {
+	var zipString = window.location.search.substring(1);
+	var variableArray = zipString.split('&');
+	for(var i = 0; i<variableArray.length; i++){
+		var pair = variableArray[i].split('=');
+		if (pair[0] == url) {
+			return pair[1];
+		}
+	}
 }
 	 
 var geocoder;
@@ -63,6 +69,8 @@ var locations = [
         ['Pittok Mansion', 45.5250, -122.7164],
         ['Council Crest', 45.5001, -122.7093	]
     ];
+
+
     
 
 	
