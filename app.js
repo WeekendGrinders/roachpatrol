@@ -1,4 +1,3 @@
-//not needed?
 function getZip(url) {
 	var zipString = window.location.search.substring(1);
 	var variableArray = zipString.split('&');
@@ -13,22 +12,15 @@ function getZip(url) {
 var geocoder;
 var marker, i;
 
-var selectedValue = $('#dropdown').val();
-
-
 
 function initialize() {
-	
-
-	
-
 
 	geocoder = new google.maps.Geocoder();
 	var mapOptions = {
     zoom: 14
   };
 	geocoder.geocode({
-	address: '97203'
+	address: getZip('zipcode')
 	}, function(results, status){
 		if(status == google.maps.GeocoderStatus.OK) {
 			map.setCenter(results[0].geometry.location);
