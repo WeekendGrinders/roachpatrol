@@ -11,10 +11,11 @@ function getZip(url) {
 	 
 var geocoder;
 var marker, i;
+var lat;
+var lng;
 
 
 function initialize() {
-
 	geocoder = new google.maps.Geocoder();
 	var mapOptions = {
     zoom: 14
@@ -24,6 +25,10 @@ function initialize() {
 	}, function(results, status){
 		if(status == google.maps.GeocoderStatus.OK) {
 			map.setCenter(results[0].geometry.location);
+			lat = results[0].geometry.location.lat();
+			console.log(lat);
+			lng = results[0].geometry.location.lng();
+			console.log(lng);
 			new google.maps.Marker({
 				map: map,
 				position: results[0].geometry.location	
@@ -50,7 +55,7 @@ function initialize() {
 
 
   var map = new google.maps.Map(document.getElementById('map-canvas'),
-      mapOptions);
+      mapOptions);  
 }
 
 
