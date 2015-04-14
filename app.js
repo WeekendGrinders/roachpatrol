@@ -14,6 +14,8 @@ var marker, i;
 var lat;
 var lng;
 
+var zipLocation = {};
+
 
 function initialize() {
 	geocoder = new google.maps.Geocoder();
@@ -29,6 +31,7 @@ function initialize() {
 			console.log(lat);
 			lng = results[0].geometry.location.lng();
 			console.log(lng);
+			zipLocation = {latitude: lat, longitude: lng};
 			new google.maps.Marker({
 				map: map,
 				position: results[0].geometry.location	
