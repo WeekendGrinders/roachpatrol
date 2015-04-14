@@ -4,53 +4,47 @@ var http = require('http');
 var Router = require("routes-router");
 var router = Router(); 
 
-// var serverResponse = {};
+var body = '';
 
-// var serverResponse = request("http://api.civicapps.org/restaurant-inspections/", function(error, response, body) {
-// 		  serverResponse += body;
-// 		  console.log(serverResponse)
-// 		});
+function api(response, query) {
+	var slicedQuery = query.split('=');
+	var lat = slicedQuery[1].substring(0, slicedQuery[1].length - 4);
+	var lng = slicedQuery[2];
+	var lngLat = lng + "," + lat;
 
+	console.log("lng: " + lng);
+	console.log("lat: " + lat);
+	console.log("lngLat: " + lngLat);
 
-
-// console.log(serverResponse);
-
-// router.addRoute("/go", {
-// 	GET: function(req,res,opts) {
-// 		console.log("Pulling data from API...");
-// 		var serverResponse = '';
-
-// 		var serverResponse = request("http://api.civicapps.org/restaurant-inspections/", function(error, response, body) {
-// 					serverResponse += body;
-// 					console.log('type = '+typeof body);
-// 					console.log('type = '+typeof server);
-// 					//console.log("Server Response: " + serverResponse);
-// 					console.log("Server Response: " + serverResponse);
-// 				});
-// 		res.end(JSON.stringify(serverResponse));
-// 		}
-// });
-
-var body = "";
-
-   http.get("http://api.civicapps.org/restaurant-inspections/", function (res) {
-       console.log("Got response: " + res.statusCode);
-       res.on('data', function (chunk) {
-           body += chunk;
-           console.log(body);
-       });
-       res.on('end', function () {
-           var obj = JSON.parse(body);
-           console.log("This proves I know WTF is going down: " + obj.results[0].name);
-       });
-       res.on('error', function (e) {
-           console.log("Got error: " + e.message);
-       });
-   });
+	http.get("http://api.civicapps.org/restaurant-inspections/near/" + lngLat + "?distance=5&count=20000", function (res) {
+		console.log("Got response: " + res.statusCode);
+		res.on('data', function (chunk) {
+		   	body += chunk;
+		   	console.log("---------------Recieved a chunk of data from API--------------");
+		});
+		res.on('end', function () {
+			console.log(body);
+		   	var obj = JSON.parse(body);
+		   	console.log("---------------closing connection with server--------------");
+		   	response.end(body);
+		});
+		res.on('error', function (e) {
+		   	console.log("Got error: " + e.message);
+		});
+	});
+	console.log("---------------End of API function--------------");
+	console.log(body);
+	return true;
+};
 
 router.addRoute("/go", {
 	GET: function(req,res,opts) {
-		res.end(body);
+		var promise = {};
+		console.log("---------------Calling GET function--------------");
+		console.log(opts.parsedUrl.query);
+		api(res,opts.parsedUrl.query);
+		console.log("---------------Passing data to client--------------");
+		console.log("---------------Finished Sending data to the client--------------");
 	}
 });
 

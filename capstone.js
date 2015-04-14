@@ -23,16 +23,17 @@
 
 var restaurants = {};
 
+var opt = {"lat": 45.516964, "lng": -122.6732897};
+
+
 var roachPatrol = {
 	url: '/go',
 	go: function() {
 		$.ajax({
 			url: this.url,
+			data: opt,
 			method: 'GET',
 			dataType: 'json',
-			success: function(data) {
-				alert(data);
-			},
 			error : function(httpReq,status,exception){
         		alert(status+" "+exception);
     		}
@@ -47,8 +48,13 @@ function acceptResponse(data, status, jqXHR) {
 	console.log('Response status: '+status);
 	console.log(jqXHR);
 	restaurants = data;
-	for (var i = 0; i < restaurants.results.length; i++) {
-		$('#here').append('<div>'+restaurants.results[i].name+'</div>');
+
+	if (restaurants[0] == undefined){
+		for (var i = 0; i < restaurants.results.length; i++) {
+			$('#here').append('<div>'+i+ ' - '+restaurants.results[i].name+' Score:' +restaurants.results[i].score+ ' ID: '+restaurants.results[i].id+'</div> ');
+		};
+	} else {
+		console.log("No results...");
 	};
 }
 
