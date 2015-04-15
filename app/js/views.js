@@ -2,56 +2,56 @@
  * Created by michaelt on 4/12/15.
  */
 
-rpApp.RestMainView = Backbone.View.extend({
-    tagName: 'div',
+app.RestMainView = Backbone.View.extend({
     id: 'restMain',
     className: 'restMainView',
     render: function() {
-        //var attributes = this.model.toJSON();
-        this.$el.html(rpApp.templates.main);
-        rpApp.restListView = new rpApp.RestListView({collection: this.collection});
-        rpApp.restMapView = new rpApp.RestMapView({collection: this.collection});
-        rpApp.restDetailView = new rpApp.RestDetailView({collection: this.collection});
-        rpApp.restListView.render();
-        rpApp.restMapView.render();
+        var attributes = this.model.toJSON();
+        console.log(attributes);
+        this.$el.html(app.templates.main(attributes));
+        app.restListView = new app.RestListView({model: app.restItem});
+        app.restMapView = new app.RestMapView({model: app.restItem});
+        app.restDetailView = new app.RestDetailView({model: app.restItem});
+        app.restListView.render();
+        app.restMapView.render();
+        app.restDetailView.render();
     }
 });
 
-rpApp.RestListView = Backbone.View.extend({
-    tagName: 'div',
+app.RestListView = Backbone.View.extend({
     id: 'restList',
     className: 'restListView',
     render: function() {
-        //var attributes = this.model.toJSON();
-        this.$el.html(rpApp.templates.list);
+        var attributes = this.model.toJSON();
+        this.$el.html(app.templates.list(attributes));
     }
 });
 
-rpApp.RestMapView = Backbone.View.extend({
-    tagName: 'div',
+app.RestMapView = Backbone.View.extend({
     id: 'restMap',
     className: 'restMapView',
     render: function() {
-        //var attributes = this.model.toJSON();
-        this.$el.html(rpApp.templates.map);
+        var attributes = this.model.toJSON();
+        this.$el.html(app.templates.map(attributes));
     }
 });
 
-rpApp.RestDetailView = Backbone.View.extend({
-    tagName: 'div',
+app.RestDetailView = Backbone.View.extend({
     id: 'restDetail',
     className: 'restDetailView',
     render: function() {
-        //var attributes = this.model.toJSON();
-        this.$el.html(rpApp.templates.detail);
+        var attributes = this.model.toJSON();
+        this.$el.html(app.templates.detail(attributes));
     }
 });
 
 $(function() {
-    rpApp.restMainView = new rpApp.RestMainView(
-        {model: rpApp.restItem}
+    app.restMainView = new app.RestMainView(
+        {model: app.restItem}
     );
-    rpApp.restMainView.render();
-    console.log(rpApp.restListView.el);
-    console.log(rpApp.restMapView.el);
+    app.restMainView.render();
+    console.log(app.restMainView.el);
+    console.log(app.restListView.el);
+    console.log(app.restMapView.el);
+    console.log(app.restDetailView.el);
 });
