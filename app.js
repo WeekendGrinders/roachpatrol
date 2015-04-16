@@ -70,6 +70,16 @@ var locations = [
         ['Council Crest', 45.5001, -122.7093	]
     ];
 
+// /* Loops thru restaurant results and lists address */
+
+// function address() {
+// 	for(var x = 0; x < restaurants.results.length; x++) {
+// 		for(var key in restaurants.results[x].address) {
+// 			console.log(restaurants.results[x].address[key]);
+// 		}
+// 		//console.log(restaurants.results[x].address);
+// 	}
+// }
 
     
 
