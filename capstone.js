@@ -22,8 +22,10 @@
 // }
 
 var restaurants = {};
+var opt = {};
 
-var opt = {"lat": 45.516964, "lng": -122.6732897};
+//need to populate opt object after initialize runs but before roachPatrol.go fires
+opt = {"lat": zipLat, "lng": zipLng};
 
 
 var roachPatrol = {

@@ -11,8 +11,8 @@ function getZip(url) {
 	 
 var geocoder;
 var marker, i;
-var lat;
-var lng;
+var zipLat;
+var zipLng;
 
 var zipLocation = {};
 
@@ -27,11 +27,12 @@ function initialize() {
 	}, function(results, status){
 		if(status == google.maps.GeocoderStatus.OK) {
 			map.setCenter(results[0].geometry.location);
-			lat = results[0].geometry.location.lat();
-			console.log(lat);
-			lng = results[0].geometry.location.lng();
-			console.log(lng);
-			zipLocation = {latitude: lat, longitude: lng};
+			zipLat = results[0].geometry.location.lat();
+			console.log(zipLat);
+			zipLng = results[0].geometry.location.lng();
+			console.log(zipLng);
+			console.log(opt);
+			zipLocation = {latitude: zipLat, longitude: zipLng};
 			new google.maps.Marker({
 				map: map,
 				position: results[0].geometry.location	
@@ -40,12 +41,14 @@ function initialize() {
 			alert('Geocode was not successful');
 				}
 
-			for (i = 0; i < locations.length; i++) {
-		    marker = new google.maps.Marker({
-		    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-		    map: map
-		  	});
-  		}
+				/* Loop for hard coded lat and long test locations */
+
+			// for (i = 0; i < locations.length; i++) {
+		 //    marker = new google.maps.Marker({
+		 //    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+		 //    map: map
+		 //  	});
+  	// 	}
 /*
    		google.maps.event.addListener(marker, 'click', (function (marker, i) {
         return function () {
@@ -62,13 +65,15 @@ function initialize() {
 }
 
 
-/* test hard coded lat and long */
+/* test hard coded lat and long 
 
 var locations = [
         ['Portland',  45.5236111, -122.675, 4],
         ['Pittok Mansion', 45.5250, -122.7164],
         ['Council Crest', 45.5001, -122.7093	]
     ];
+
+    */
 
 // /* Loops thru restaurant results and lists address */
 
