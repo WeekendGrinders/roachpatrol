@@ -48,7 +48,7 @@ router.addRoute("/go", {
 	}
 });
 
-var indexFile = process.argv[2] || 'capstone';
+var indexFile = process.argv[2] || 'index';
 
 router.addRoute("/*", st({
   path: __dirname,
