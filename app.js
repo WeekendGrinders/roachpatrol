@@ -60,33 +60,19 @@ function initialize() {
     			})(marker, i)); */
 			})
 
-
-
   var map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);  
 }
 
 
-/* test hard coded lat and long 
 
-var locations = [
-        ['Portland',  45.5236111, -122.675, 4],
-        ['Pittok Mansion', 45.5250, -122.7164],
-        ['Council Crest', 45.5001, -122.7093	]
-    ];
+// Loops thru restaurant results logs lat lng
 
-    */
-
-// /* Loops thru restaurant results and lists address */
-
-// function address() {
-// 	for(var x = 0; x < restaurants.results.length; x++) {
-// 		for(var key in restaurants.results[x].address) {
-// 			console.log(restaurants.results[x].address[key]);
-// 		}
-// 		//console.log(restaurants.results[x].address);
-// 	}
-// }
+function restaurantLocation() {
+	for(var x = 0; x < restaurants.results.length; x++) {
+		console.log('Lat: ' + restaurants.results[x].location.Latitude + ' ' + 'Long: ' +restaurants.results[x].location.Longitude);
+	}
+}
 
     
 
