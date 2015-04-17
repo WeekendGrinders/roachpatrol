@@ -54,10 +54,24 @@ function initialize() {
 // Loops thru restaurant results logs lat lng
 
 function restaurantLocation() {
+	var mapOptions = {
+    zoom: 14
+  };
+	var map = new google.maps.Map(document.getElementById('map-canvas'),
+      mapOptions); 
+
 	for(var x = 0; x < restaurants.results.length; x++) {
 		console.log('Lat: ' + restaurants.results[x].location.Latitude + ' ' + 'Long: ' +restaurants.results[x].location.Longitude);
+		new google.maps.Marker({
+			map: map,
+			position: new google.maps.LatLng(restaurants.results[x].location.Latitude,
+				restaurants.results[x].location.Longitude)
+				
+		});
 	}
 }
+
+
 
     
 
