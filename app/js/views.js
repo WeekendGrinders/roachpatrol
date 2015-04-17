@@ -2,43 +2,62 @@
  * Created by michaelt on 4/12/15.
  */
 
-app.RestMainView = Backbone.View.extend({
-    id: 'restMain',
-    className: 'restMainView',
+app.RestaurantMainView = Backbone.View.extend({
+    id: 'restaurantMain',
+    className: 'restaurantMainView',
     render: function() {
         var attributes = this.model.toJSON();
         console.log(attributes);
         this.$el.html(app.templates.main(attributes));
-        app.restListView = new app.RestListView({model: app.restItem});
-        app.restMapView = new app.RestMapView({model: app.restItem});
-        app.restDetailView = new app.RestDetailView({model: app.restItem});
-        app.restListView.render();
-        app.restMapView.render();
-        app.restDetailView.render();
+        app.restaurantListView = new app.RestaurantListView({collection: app.restaurantList});
+        app.restaurantMapView = new app.RestaurantMapView({model: app.restaurant});
+        app.restaurantDetailView = new app.RestaurantDetailView({model: app.restaurant});
+        app.restaurantListView.render();
+        app.restaurantMapView.render();
+        app.restaurantDetailView.render();
     }
 });
 
-app.RestListView = Backbone.View.extend({
-    id: 'restList',
-    className: 'restListView',
+app.RestaurantView = Backbone.View.extend({
+    id: 'restaurant',
+    className: 'restaurantView',
     render: function() {
         var attributes = this.model.toJSON();
         this.$el.html(app.templates.list(attributes));
     }
 });
 
-app.RestMapView = Backbone.View.extend({
-    id: 'restMap',
-    className: 'restMapView',
+app.RestaurantListView = Backbone.View.extend({
+    id: 'restaurantList',
+    className: 'restaurantListView',
+    initialize: function() {
+        this.collection.on('add', this.addRestaurant, this);
+        this.collection.on('reset', this.addAll, this);
+    },
+    addRestaurant: function(restaurant) {
+        app.restaurantView = new app.RestaurantView({model: app.restaurant});
+        this.$el.append(app.restaurantView.render().el);
+    },
+    addAll: function() {
+        this.collection.forEach(this.addRestaurant, this);
+    },
+    render: function() {
+        this.addAll();
+    }
+});
+
+app.RestaurantMapView = Backbone.View.extend({
+    id: 'restaurantMap',
+    className: 'restaurantMapView',
     render: function() {
         var attributes = this.model.toJSON();
         this.$el.html(app.templates.map(attributes));
     }
 });
 
-app.RestDetailView = Backbone.View.extend({
-    id: 'restDetail',
-    className: 'restDetailView',
+app.RestaurantDetailView = Backbone.View.extend({
+    id: 'restaurantDetail',
+    className: 'restaurantDetailView',
     render: function() {
         var attributes = this.model.toJSON();
         this.$el.html(app.templates.detail(attributes));
@@ -46,12 +65,12 @@ app.RestDetailView = Backbone.View.extend({
 });
 
 $(function() {
-    app.restMainView = new app.RestMainView(
-        {model: app.restItem}
+    app.restaurantMainView = new app.RestaurantMainView(
+        {model: app.restaurant}
     );
-    app.restMainView.render();
-    console.log(app.restMainView.el);
-    console.log(app.restListView.el);
-    console.log(app.restMapView.el);
-    console.log(app.restDetailView.el);
+    app.restaurantMainView.render();
+    console.log(app.restaurantMainView.el);
+    console.log(app.restaurantListView.el);
+    //console.log(app.restaurantMapView.el);
+    //console.log(app.restaurantDetailView.el);
 });

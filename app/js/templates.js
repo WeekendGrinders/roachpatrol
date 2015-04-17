@@ -8,7 +8,7 @@ app.templates.main = _.template(
 );
 
 app.templates.list = _.template(
-    '<ul><li><h1>{{ name }}</h1><br><h2>Style: {{style}}</h2></li></ul>'
+    '<ul><li><h1>{{ name }}</h1><br><h2>Score: {{style}}</h2></li></ul>'
 );
 
 app.templates.map = _.template(

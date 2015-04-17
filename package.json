@@ -1,0 +1,16 @@
+{
+  "name": "RoachPatrol",
+  "version": "0.0.1",
+  "description": "Peace of mind",
+  "main": "0-process-argv.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Houston, Tupper & Emery",
+  "license": "ISC",
+  "dependencies": {
+    "http": "0.0.0",
+    "routes-router": "^4.1.2",
+    "st": "^0.5.3",
+  }
+}
