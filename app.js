@@ -43,27 +43,12 @@ function initialize() {
 			alert('Geocode was not successful');
 				}
 
-				/* Loop for hard coded lat and long test locations */
-
-			// for (i = 0; i < locations.length; i++) {
-		 //    marker = new google.maps.Marker({
-		 //    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-		 //    map: map
-		 //  	});
-  	// 	}
-/*
-   		google.maps.event.addListener(marker, 'click', (function (marker, i) {
-        return function () {
-            infowindow.setContent(locations[i][0]);
-            infowindow.open(map, marker);
-        		}
-    			})(marker, i)); */
+				
 			})
 
   var map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);  
 }
-
 
 
 // Loops thru restaurant results logs lat lng
