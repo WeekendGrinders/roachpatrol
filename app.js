@@ -31,6 +31,8 @@ function initialize() {
 			console.log(zipLat);
 			zipLng = results[0].geometry.location.lng();
 			console.log(zipLng);
+			//set lat and lng in the opt object from capstone.js
+			opt = {"lat": zipLat, "lng": zipLng};
 			console.log(opt);
 			zipLocation = {latitude: zipLat, longitude: zipLng};
 			new google.maps.Marker({
