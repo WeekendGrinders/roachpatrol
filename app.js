@@ -15,6 +15,7 @@ var zipLat;
 var zipLng;
 
 var zipLocation = {};
+var restaurants = {};
 
 
 function initialize() {
@@ -33,7 +34,8 @@ function initialize() {
 			console.log(zipLng);
 			//set lat and lng in the opt object from capstone.js
 			opt = {"lat": zipLat, "lng": zipLng};
-			console.log(opt);
+			//console.log(opt);
+			roachPatrol.go();
 			zipLocation = {latitude: zipLat, longitude: zipLng};
 			new google.maps.Marker({
 				map: map,
