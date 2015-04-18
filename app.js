@@ -33,7 +33,8 @@ function initialize() {
 			console.log(zipLng);
 			//set lat and lng in the opt object from capstone.js
 			opt = {"lat": zipLat, "lng": zipLng};
-			console.log(opt);
+			//console.log(opt);
+			roachPatrol.go();
 			zipLocation = {latitude: zipLat, longitude: zipLng};
 			new google.maps.Marker({
 				map: map,
@@ -44,13 +45,25 @@ function initialize() {
 				}
 
 				
-			})
+			//loop through results
+			for(i=0; i<restaurants.results.length; i++){
+				//creates resteraunt markers
+				marker = new google.maps.Marker({
+				position: new google.maps.LatLng(
+					restaurants.results[x].location.Latitude,
+					restaurants.results[x].location.Longitude),
+					map: map	
+				});
+			}
+		})
 
   var map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);  
 }
 
 
+
+/*
 // Loops thru restaurant results logs lat lng
 
 function restaurantLocation() {
@@ -70,6 +83,8 @@ function restaurantLocation() {
 		});
 	}
 }
+
+*/
 
 
 
