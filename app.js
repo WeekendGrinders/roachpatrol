@@ -68,6 +68,7 @@ function initialize() {
 	//loop through ajax results and place markers on the map for each restaurant
 	for(var i = 0; i < restaurants.results.length; i++) {
 		console.log('Lat: ' + restaurants.results[i].location.Latitude + ' ' + 'Long: ' +restaurants.results[i].location.Longitude);
+		$('.results').append("<p>" + restaurants.results[i].name + "</p>");
 		//create markers
 		marker = new google.maps.Marker({
 			map: map,
