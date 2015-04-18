@@ -16,7 +16,6 @@ var zipLng;
 
 var zipLocation = {};
 var restaurants = {};
-var locations = [];
 
 function initialize() {
 	geocoder = new google.maps.Geocoder();
@@ -34,37 +33,30 @@ function initialize() {
 			console.log(zipLng);
 			//set lat and lng in the opt object from capstone.js
 			opt = {"lat": zipLat, "lng": zipLng};
-			//console.log(opt);
 			roachPatrol.go();
 			zipLocation = {latitude: zipLat, longitude: zipLng};
-			// new google.maps.Marker({
-			// 	map: map,
-			// 	position: results[0].geometry.location	
-			// 	})
 		} else {
 			alert('Geocode was not successful');
 				}
-
-				
 			})
-
-	//var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);  
 }
 
 
-// Loops thru restaurant results logs lat lng
-
+// Renders the map ans loops thru restaurant results logs lat lng
 function renderMap() {
 	console.log("Rendering the map...");
 
+	//setting center point and zoom level
 	var mapOptions = {
-    	zoom: 14,
+    	zoom: 15,
     	center: new google.maps.LatLng(zipLat, zipLng)
   	};
 
+  	//creating map
 	var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 	console.log(restaurants.results);
 
+	//loop through ajax results and place markers on the map for each restaurant
 	for(var i = 0; i < restaurants.results.length; i++) {
 		console.log('Lat: ' + restaurants.results[i].location.Latitude + ' ' + 'Long: ' +restaurants.results[i].location.Longitude);
 		new google.maps.Marker({
