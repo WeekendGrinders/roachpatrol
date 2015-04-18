@@ -78,7 +78,7 @@ function initialize() {
 		//open the infoWindow for the restaurant when a marker is clicked
 		google.maps.event.addListener(marker, 'click', (function(marker, i) {
 			return function() {
-			    infowindow.setContent("<h2>" + restaurants.results[i].name + "</h2> Score: " +restaurants.results[i].score);
+			    infowindow.setContent("<h4>" + restaurants.results[i].name + "</h4> Score: " +restaurants.results[i].score);
 			    infowindow.open(map, marker);
 			}
          })(marker, i));
