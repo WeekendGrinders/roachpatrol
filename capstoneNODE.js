@@ -21,7 +21,7 @@ function api(response, query) {
 	console.log("lngLat: " + lngLat);
 
 	//making API GET request 
-	http.get("http://api.civicapps.org/restaurant-inspections/near/" + lngLat + "?distance=0.5&count=20000", function (res) {
+	http.get("http://api.civicapps.org/restaurant-inspections/near/" + lngLat + "?distance=1&count=20000", function (res) {
 		console.log("Got response: " + res.statusCode);
 		res.on('data', function (chunk) {
 		   	body += chunk;
@@ -68,7 +68,7 @@ function getReport(response, query) {
 //Get inpection records
 router.addRoute("/go", {
 	GET: function(req,res,opts) {
-		var promise = {};
+		body = '';
 		console.log("---------------Calling GET function--------------");
 		console.log(opts.parsedUrl.query);
 		api(res,opts.parsedUrl.query);
