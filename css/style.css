@@ -13,7 +13,6 @@ body {
 #map-canvas {
 	width: 700px;
 	height: 700px;
-	margin: 0 auto;
 	padding: 0;
 	border: 2px solid black;
 }
@@ -23,9 +22,11 @@ body {
 	height: 30px;
 }
 
-.container {
+
+.homepage {
 	text-align: center;
 }
+
 
 
 
