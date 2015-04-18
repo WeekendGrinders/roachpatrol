@@ -45,6 +45,7 @@ function acceptResponse(data, status, jqXHR) {
 	console.log('Response status: '+status);
 	console.log(jqXHR);
 	restaurants = data;
+	renderMap();
 }
 
 //Display and store data from API (for inspection report)

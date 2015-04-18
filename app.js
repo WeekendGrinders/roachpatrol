@@ -16,18 +16,18 @@ var zipLng;
 
 var zipLocation = {};
 var restaurants = {};
-
+var locations = [];
 
 function initialize() {
 	geocoder = new google.maps.Geocoder();
 	var mapOptions = {
-    zoom: 14
-  };
+    	zoom: 14
+  	};
 	geocoder.geocode({
 	address: getZip('zipcode')
 	}, function(results, status){
 		if(status == google.maps.GeocoderStatus.OK) {
-			map.setCenter(results[0].geometry.location);
+			//map.setCenter(results[0].geometry.location);
 			zipLat = results[0].geometry.location.lat();
 			console.log(zipLat);
 			zipLng = results[0].geometry.location.lng();
@@ -37,10 +37,10 @@ function initialize() {
 			//console.log(opt);
 			roachPatrol.go();
 			zipLocation = {latitude: zipLat, longitude: zipLng};
-			new google.maps.Marker({
-				map: map,
-				position: results[0].geometry.location	
-				})
+			// new google.maps.Marker({
+			// 	map: map,
+			// 	position: results[0].geometry.location	
+			// 	})
 		} else {
 			alert('Geocode was not successful');
 				}
@@ -48,32 +48,31 @@ function initialize() {
 				
 			})
 
-  var map = new google.maps.Map(document.getElementById('map-canvas'),
-      mapOptions);  
+	//var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);  
 }
 
 
 // Loops thru restaurant results logs lat lng
 
-function restaurantLocation() {
-	var mapOptions = {
-    zoom: 14
-  };
-	var map = new google.maps.Map(document.getElementById('map-canvas'),
-      mapOptions); 
+function renderMap() {
+	console.log("Rendering the map...");
 
-	for(var x = 0; x < restaurants.results.length; x++) {
-		console.log('Lat: ' + restaurants.results[x].location.Latitude + ' ' + 'Long: ' +restaurants.results[x].location.Longitude);
+	var mapOptions = {
+    	zoom: 14,
+    	center: new google.maps.LatLng(zipLat, zipLng)
+  	};
+
+	var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+	console.log(restaurants.results);
+
+	for(var i = 0; i < restaurants.results.length; i++) {
+		console.log('Lat: ' + restaurants.results[i].location.Latitude + ' ' + 'Long: ' +restaurants.results[i].location.Longitude);
 		new google.maps.Marker({
 			map: map,
-			position: new google.maps.LatLng(restaurants.results[x].location.Latitude,
-				restaurants.results[x].location.Longitude)
-				
+			position: new google.maps.LatLng(restaurants.results[i].location.Latitude, restaurants.results[i].location.Longitude)
 		});
 	}
 }
-
-
 
     
 
