@@ -43,7 +43,6 @@ function getLatLng() {
 
 function initialize() {
 	console.log("Rendering the map...");
-
 	//setting center point and zoom level
 	var mapOptions = {
     	zoom: 14,
@@ -63,11 +62,14 @@ function initialize() {
 	});
 
 
-	//console.log(restaurants.results);
-
 	//loop through ajax results and place markers on the map for each restaurant
 	for(var i = 0; i < restaurants.results.length; i++) {
 		console.log('Lat: ' + restaurants.results[i].location.Latitude + ' ' + 'Long: ' +restaurants.results[i].location.Longitude);
+
+		//get inspection number for each result, run it thru the report function
+		inspectionNum = restaurants.results[i].inspection_number;
+		console.log(inspectionNum);
+		restaurantInspection.report();
 		
 		//create markers
 		marker = new google.maps.Marker({

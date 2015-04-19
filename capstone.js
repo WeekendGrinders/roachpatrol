@@ -1,8 +1,7 @@
 
 var restaurants = {};
 var opt = {};
-//Hard coding inspection number for now
-var inspectionNum = "6203471";
+var inspectionNum;  //should by dynamically assigning by looping through results
 var report = {};
 
 //Calling for inspection record around a certain latlong
