@@ -21,6 +21,9 @@ app.RestaurantMainView = Backbone.View.extend({
 app.RestaurantView = Backbone.View.extend({
     id: 'restaurant',
     className: 'restaurantView',
+    initialize: function() {
+        this.model.on('hide', this.remove, this);
+    },
     render: function() {
         var attributes = this.model.toJSON();
         this.$el.html(app.templates.list(attributes));

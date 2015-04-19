@@ -7,9 +7,6 @@ app.Restaurant = Backbone.Model.extend({
         name:'Roach Patrol',
         style:'bootstrapers'
     },
-    initialize: function(model) {
-        this.model.on('hide', this.remove, this);
-    }
 });
 
 app.restaurant = new app.Restaurant({});
