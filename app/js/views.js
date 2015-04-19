@@ -35,7 +35,7 @@ app.RestaurantListView = Backbone.View.extend({
         this.collection.on('reset', this.addAll, this);
     },
     addRestaurant: function(restaurant) {
-        app.restaurantView = new app.RestaurantView({model: app.restaurant});
+        app.restaurantView = new app.RestaurantView({model: restaurant});
         this.$el.append(app.restaurantView.render().el);
     },
     addAll: function() {
@@ -65,9 +65,7 @@ app.RestaurantDetailView = Backbone.View.extend({
 });
 
 $(function() {
-    app.restaurantMainView = new app.RestaurantMainView(
-        {model: app.restaurant}
-    );
+    app.restaurantMainView = new app.RestaurantMainView({});
     app.restaurantMainView.render();
     console.log(app.restaurantMainView.el);
     console.log(app.restaurantListView.el);

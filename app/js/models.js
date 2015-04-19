@@ -7,7 +7,7 @@ app.Restaurant = Backbone.Model.extend({
         name:'Roach Patrol',
         style:'bootstrapers'
     },
-    initialize: function() {
+    initialize: function(model) {
         this.model.on('hide', this.remove, this);
     }
 });
@@ -16,11 +16,11 @@ app.restaurant = new app.Restaurant({});
 
 app.RestaurantList = Backbone.Collection.extend({
     //url: '/query',
-    //model: app.Restaurant,
+    model: app.Restaurant,
     initialize: function() {
         this.on('remove', this.hideModel);
     },
-    hideModel: function() {
+    hideModel: function(model) {
         model.trigger('hide');
     }
 });
