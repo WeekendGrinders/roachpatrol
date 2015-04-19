@@ -41,7 +41,8 @@ app.RestaurantListView = Backbone.View.extend({
     },
     addRestaurant: function(restaurant) {
         app.restaurantView = new app.RestaurantView({model: restaurant});
-        this.$el.append(app.restaurantView.render().el);
+        this.$el.append(app.restaurantView.render());
+        console.log(app.restaurantView.el);
     },
     addAll: function() {
         this.collection.forEach(this.addRestaurant, this);
@@ -70,10 +71,13 @@ app.RestaurantDetailView = Backbone.View.extend({
 });
 
 $(function() {
-    app.restaurantMainView = new app.RestaurantMainView({model: app.restaurant});
-    app.restaurantMainView.render();
-    console.log(app.restaurantMainView.el);
-    console.log(app.restaurantListView.el);
+    //app.restaurantMainView = new app.RestaurantMainView({model: app.restaurant});
+    //app.restaurantMainView.render();
+    //console.log(app.restaurantMainView.el);
+    //console.log(app.restaurantListView.el);
     //console.log(app.restaurantMapView.el);
     //console.log(app.restaurantDetailView.el);
+    app.restaurantListView = new app.RestaurantListView({collection: app.restaurantList});
+    app.restaurantListView.render();
+    console.log(app.restaurantListView.el);
 });
