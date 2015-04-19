@@ -15,6 +15,7 @@ var zipLat;
 var zipLng;
 
 var zipLocation = {};
+var gMarkers = [];
 
 function getLatLng() {
 	//Getting latLng of requested zipcode and storing them in zipLat and zipLng
@@ -67,9 +68,12 @@ function initialize() {
 
 	//loop through ajax results and place markers on the map for each restaurant
 	for(var i = 0; i < restaurants.results.length; i++) {
-		console.log('Lat: ' + restaurants.results[i].location.Latitude + ' ' + 'Long: ' +restaurants.results[i].location.Longitude);
-		//display name and description in sidebar
-		$('.results').append("<p>" + restaurants.results[i].name + " " + restaurants.results[i].score + "</p>");
+		console.log('Lat: ' + restaurants.results[i].location.Latitude + ' ' + 'Long: ' +restaurants.results[i].location.Longitude+ 'Name:' +restaurants.results[i].name+ 'InspectionID :' +restaurants.results[i].inspection_number);
+		//show info in sidebar
+		$('.results').append('<div id="'+i+'" class="resultItem" onClick="getThis('+i+')"><span class="restName">' + restaurants.results[i].name + '</span><br><span class="restAddress">' + restaurants.results[i].address.street + '</span><span class="restScore"> Score:' + restaurants.results[i].score + '</span></div>');
+		if ((i%2) != 0) {
+			$('#'+i).css({background: "#CCC"});
+		}
 		//create markers
 		marker = new google.maps.Marker({
 			map: map,
@@ -84,5 +88,11 @@ function initialize() {
 			    infowindow.open(map, marker);
 			}
          })(marker, i));
+		gMarkers.push(marker);
 	}
+}
+
+function getThis(marker) {
+	console.log("Clicked a result..." + marker);
+	google.maps.event.trigger(gMarkers[marker], "click");
 }
