@@ -6,6 +6,7 @@ app.RestaurantMainView = Backbone.View.extend({
     id: 'restaurantMain',
     className: 'restaurantMainView',
     render: function() {
+        console.log(this.model.attributes);
         var attributes = this.model.toJSON();
         console.log(attributes);
         this.$el.html(app.templates.main(attributes));
@@ -33,6 +34,7 @@ app.RestaurantView = Backbone.View.extend({
 app.RestaurantListView = Backbone.View.extend({
     id: 'restaurantList',
     className: 'restaurantListView',
+    collection: app.restaurantList,
     initialize: function() {
         this.collection.on('add', this.addRestaurant, this);
         this.collection.on('reset', this.addAll, this);
@@ -68,7 +70,7 @@ app.RestaurantDetailView = Backbone.View.extend({
 });
 
 $(function() {
-    app.restaurantMainView = new app.RestaurantMainView({});
+    app.restaurantMainView = new app.RestaurantMainView({model: app.restaurant});
     app.restaurantMainView.render();
     console.log(app.restaurantMainView.el);
     console.log(app.restaurantListView.el);

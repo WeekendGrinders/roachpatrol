@@ -5,8 +5,8 @@
 app.Restaurant = Backbone.Model.extend({
     defaults: {
         name:'Roach Patrol',
-        style:'bootstrapers'
-    },
+        style:'bootstrappers'
+    }
 });
 
 app.restaurant = new app.Restaurant({});
