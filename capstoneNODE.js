@@ -93,6 +93,7 @@ router.addRoute("/report", {
 	}
 });
 
+
 //Getting index.html if one isn't specified
 var indexFile = process.argv[2] || 'index';
 
