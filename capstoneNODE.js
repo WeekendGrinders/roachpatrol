@@ -21,7 +21,7 @@ function api(response, query) {
 	console.log("lngLat: " + lngLat);
 
 	//making API GET request 
-	http.get("http://api.civicapps.org/restaurant-inspections/near/" + lngLat + "?distance=1&count=20000", function (res) {
+	http.get("http://api.civicapps.org/restaurant-inspections/near/" + lngLat + "?distance=2&count=20000", function (res) {
 		console.log("Got response: " + res.statusCode);
 		res.on('data', function (chunk) {
 		   	body += chunk;
@@ -31,7 +31,58 @@ function api(response, query) {
 			console.log(body);
 		   	var obj = JSON.parse(body);
 		   	console.log("---------------closing connection with server--------------");
-		   	response.end(body);
+		   	//removing inspections with the score of 0
+		   	for (var i = (obj.results.length - 1); i > -1; i--) {
+		   		if (obj.results[i].score == 0) {
+		   			obj.results.splice(i,1);
+		   		};
+		   	}
+		   	response.end(JSON.stringify(obj));
+		});
+		res.on('error', function (e) {
+		   	console.log("Got error: " + e.message);
+		});
+	});
+	console.log("---------------End of API function--------------");
+	console.log(body);
+	return true;
+};
+
+//Call for inspection records around a certain LatLng
+function apiBackbone(response, query) {
+
+	//split query into lat long
+	var slicedQuery = query.split('=');
+	var lat = slicedQuery[1].substring(0, slicedQuery[1].length - 4);
+	var lng = slicedQuery[2];
+	var lngLat = lng + "," + lat;
+
+	console.log("lng: " + lng);
+	console.log("lat: " + lat);
+	console.log("lngLat: " + lngLat);
+
+	var arrBackbone = [];
+
+	//making API GET request 
+	http.get("http://api.civicapps.org/restaurant-inspections/near/" + lngLat + "?distance=2&count=20000", function (res) {
+		console.log("Got response: " + res.statusCode);
+		res.on('data', function (chunk) {
+		   	body += chunk;
+		   	console.log("---------------Recieved a chunk of data from API--------------");
+		});
+		res.on('end', function () {
+			//console.log(body);
+		   	var obj = JSON.parse(body);
+		   	console.log("---------------closing connection with server--------------");
+		   	//removing inspections with the score of 0
+		   	for (var i = (obj.results.length - 1); i > -1; i--) {
+		   		if (obj.results[i].score == 0) {
+		   		} else {
+		   			obj.results[i].push(arrBackbone);
+		   		};
+		   	}
+		   	console.log("Array: " + arrBackbone);
+		   	response.end(arrBackbone);
 		});
 		res.on('error', function (e) {
 		   	console.log("Got error: " + e.message);
@@ -72,6 +123,18 @@ router.addRoute("/go", {
 		console.log("---------------Calling GET function--------------");
 		console.log(opts.parsedUrl.query);
 		api(res,opts.parsedUrl.query);
+		console.log("---------------Passing data to client--------------");
+		console.log("---------------Finished Sending data to the client--------------");
+	}
+});
+
+//Getting inspections for backbone
+router.addRoute("/restaurants", {
+	GET: function(req,res,opts) {
+		body = '';
+		console.log("---------------Calling GET function--------------");
+		console.log(opts.parsedUrl.query);
+		apiBackbone(res,opts.parsedUrl.query);
 		console.log("---------------Passing data to client--------------");
 		console.log("---------------Finished Sending data to the client--------------");
 	}
