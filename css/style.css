@@ -31,6 +31,31 @@ body {
 	max-width: 960px;
 }
 
+#resultsHeader {
+	background: #FFF;
+	top: 0;
+	width: 289px;
+	position: fixed;
+}
 
+.paddingElement{
+	height: 53px;
+}
 
+.results{ 
+	height: 756px;
+	overflow-y: auto;
+}
 
+.restName {
+	font-weight: bold;
+}
+
+.restScore {
+	float:right;
+	color: red;
+} 
+
+.resultItem {
+	cursor:pointer;
+}
