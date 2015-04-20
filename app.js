@@ -15,6 +15,7 @@ var zipLat;
 var zipLng;
 
 var zipLocation = {};
+var gMarkers = [];
 
 function getLatLng() {
 	//Getting latLng of requested zipcode and storing them in zipLat and zipLng
@@ -67,7 +68,12 @@ function initialize() {
 
 	//loop through ajax results and place markers on the map for each restaurant
 	for(var i = 0; i < restaurants.results.length; i++) {
-		console.log('Lat: ' + restaurants.results[i].location.Latitude + ' ' + 'Long: ' +restaurants.results[i].location.Longitude);
+		console.log('Lat: ' + restaurants.results[i].location.Latitude + ' ' + 'Long: ' +restaurants.results[i].location.Longitude+ 'Name:' +restaurants.results[i].name+ 'InspectionID :' +restaurants.results[i].inspection_number);
+		//show info in sidebar
+		$('.results').append('<div id="'+i+'" class="resultItem" onClick="getThis('+i+')"><span class="restName">' + restaurants.results[i].name + '</span><br><span class="restAddress">' + restaurants.results[i].address.street + '</span><span class="restScore"> Score:' + restaurants.results[i].score + '</span></div>');
+		if ((i%2) != 0) {
+			$('#'+i).css({background: "#CCC"});
+		}
 		//create markers
 		marker = new google.maps.Marker({
 			map: map,
@@ -78,9 +84,22 @@ function initialize() {
 		//open the infoWindow for the restaurant when a marker is clicked
 		google.maps.event.addListener(marker, 'click', (function(marker, i) {
 			return function() {
-			    infowindow.setContent("<h4>" + restaurants.results[i].name + "</h4> Score: " +restaurants.results[i].score);
+				var inspectionNums = restaurants.results[i].inspection_number.join('_');
+			    infowindow.setContent('<h4>' + restaurants.results[i].name + '</h4> Score: ' +restaurants.results[i].score+ '<br><div class="inspectionNums" onClick="openReports(\''+inspectionNums+'\')"> Inspections reports: ' + restaurants.results[i].inspection_number+'</div>');
 			    infowindow.open(map, marker);
 			}
          })(marker, i));
+		gMarkers.push(marker);
 	}
+}
+
+function openReports(arrString) {
+	var inspection_numbers = arrString.split('_');
+	console.log(inspection_numbers);
+	console.log(arrString);
+}
+
+function getThis(marker) {
+	console.log("Clicked a result..." + marker);
+	google.maps.event.trigger(gMarkers[marker], "click");
 }

@@ -20,6 +20,8 @@ function api(response, query) {
 	console.log("lat: " + lat);
 	console.log("lngLat: " + lngLat);
 
+	var tempArr = [];
+
 	//making API GET request 
 	http.get("http://api.civicapps.org/restaurant-inspections/near/" + lngLat + "?distance=2&count=20000", function (res) {
 		console.log("Got response: " + res.statusCode);
@@ -31,12 +33,31 @@ function api(response, query) {
 			console.log(body);
 		   	var obj = JSON.parse(body);
 		   	console.log("---------------closing connection with server--------------");
-		   	//removing inspections with the score of 0
+		   	//removing inspections with the score of 0 and combining inspection ids in to an array for multipule inspection on the same restaurant
 		   	for (var i = (obj.results.length - 1); i > -1; i--) {
-		   		if (obj.results[i].score == 0) {
-		   			obj.results.splice(i,1);
+		   		//Changing inspection_number to an array
+		   		obj.results[i].inspection_number = [obj.results[i].inspection_number];
+
+		   		if (obj.results[i].score != 0) {
+		   			//This record has a score over 0
+		   			var index = -1;
+		   			for(var j = 0; j < tempArr.length; j++) {
+		   				//searching tempArr for a record with the same id
+					    if (tempArr[j].id === obj.results[i].id) {
+					        //found it, pass along the index of the record
+					        index = j;
+					        break;
+					    }
+					};
+					if (index >= 0){
+						tempArr[index].inspection_number.push(obj.results[i].inspection_number) 
+					} else {
+		   			//This restaurant is not in tempArr yet
+		   			tempArr.push(obj.results[i])
+		   			};
 		   		};
 		   	}
+		   	obj.results = tempArr;
 		   	response.end(JSON.stringify(obj));
 		});
 		res.on('error', function (e) {
@@ -78,11 +99,11 @@ function apiBackbone(response, query) {
 		   	for (var i = (obj.results.length - 1); i > -1; i--) {
 		   		if (obj.results[i].score == 0) {
 		   		} else {
-		   			obj.results[i].push(arrBackbone);
+		   			arrBackbone.push(obj.results[i]);
 		   		};
 		   	}
 		   	console.log("Array: " + arrBackbone);
-		   	response.end(arrBackbone);
+		   	//response.end(arrBackbone);
 		});
 		res.on('error', function (e) {
 		   	console.log("Got error: " + e.message);
@@ -143,6 +164,7 @@ router.addRoute("/restaurants", {
 //Get inspection report
 router.addRoute("/report", {
 	GET: function(req,res,opts) {
+		body2 = '';
 		console.log("---------------Calling POST for inspection report function--------------");
 		console.log(opts.parsedUrl.query);
 		getReport(res,opts.parsedUrl.query);
