@@ -11,15 +11,16 @@ app.RestaurantMainView = Backbone.View.extend({
         console.log(attributes);
         this.$el.html(app.templates.main(attributes));
         app.restaurantListView = new app.RestaurantListView({collection: app.restaurantList});
-        app.restaurantMapView = new app.RestaurantMapView({model: app.restaurant});
-        app.restaurantDetailView = new app.RestaurantDetailView({model: app.restaurant});
+        //app.restaurantMapView = new app.RestaurantMapView({model: app.restaurant});
+        //app.restaurantDetailView = new app.RestaurantDetailView({model: app.restaurant});
         app.restaurantListView.render();
-        app.restaurantMapView.render();
-        app.restaurantDetailView.render();
+        //app.restaurantMapView.render();
+        //app.restaurantDetailView.render();
     }
 });
 
 app.RestaurantView = Backbone.View.extend({
+    tagName: 'li',
     id: 'restaurant',
     className: 'restaurantView',
     initialize: function() {
@@ -27,7 +28,7 @@ app.RestaurantView = Backbone.View.extend({
     },
     render: function() {
         var attributes = this.model.toJSON();
-        this.$el.html(app.templates.list(attributes));
+        this.$el.html(app.templates.restaurant(attributes));
     }
 });
 
@@ -71,13 +72,13 @@ app.RestaurantDetailView = Backbone.View.extend({
 });
 
 $(function() {
-    //app.restaurantMainView = new app.RestaurantMainView({model: app.restaurant});
-    //app.restaurantMainView.render();
-    //console.log(app.restaurantMainView.el);
-    //console.log(app.restaurantListView.el);
+    app.restaurantMainView = new app.RestaurantMainView({model: app.restaurant});
+    app.restaurantMainView.render();
+    console.log(app.restaurantMainView.el);
+    console.log(app.restaurantListView.el);
     //console.log(app.restaurantMapView.el);
     //console.log(app.restaurantDetailView.el);
-    app.restaurantListView = new app.RestaurantListView({collection: app.restaurantList});
-    app.restaurantListView.render();
-    console.log(app.restaurantListView.el);
+    //app.restaurantListView = new app.RestaurantListView({collection: app.restaurantList});
+    //app.restaurantListView.render();
+    //console.log(app.restaurantListView.el);
 });

@@ -12,7 +12,7 @@ app.Restaurant = Backbone.Model.extend({
 app.restaurant = new app.Restaurant({});
 
 app.RestaurantList = Backbone.Collection.extend({
-    //url: '/go',
+    url: '/restaurants',
     model: app.Restaurant,
     initialize: function() {
         this.on('remove', this.hideModel);
@@ -23,14 +23,14 @@ app.RestaurantList = Backbone.Collection.extend({
 });
 
 app.restaurantList = new app.RestaurantList({});
-//app.restaurantList.fetch();
+app.restaurantList.fetch({data: {lat:45.584332000, lng:-122.728474000}});
 
-var testSet = [
-    {name:'Dive 1', score:75},
-    {name:'Dive 2', score:80},
-    {name:'Dive 3', score:85},
-    {name:'Dive 4', score:90},
-    {name:'Dive 5', score:95}
-    ];
-
-app.restaurantList.reset(testSet);
+//var testSet = [
+//    {name:'Dive 1', score:75},
+//    {name:'Dive 2', score:80},
+//    {name:'Dive 3', score:85},
+//    {name:'Dive 4', score:90},
+//    {name:'Dive 5', score:95}
+//    ];
+//
+//app.restaurantList.reset(testSet);
