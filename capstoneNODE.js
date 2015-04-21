@@ -31,6 +31,7 @@ function api(response, query) {
 		});
 		res.on('end', function () {
 			console.log(body);
+<<<<<<< HEAD
 			var obj = JSON.parse(body);
 			console.log("---------------closing connection with server--------------");
 			//removing inspections with the score of 0 and combining inspection ids in to an array for multipule inspection on the same restaurant
@@ -62,6 +63,20 @@ function api(response, query) {
 		});
 		res.on('error', function (e) {
 			console.log("Got error: " + e.message);
+=======
+		   	var obj = JSON.parse(body);
+		   	console.log("---------------closing connection with server--------------");
+		   	//removing inspections with the score of 0
+		   	for (var i = (obj.results.length - 1); i > -1; i--) {
+		   		if (obj.results[i].score == 0) {
+		   			obj.results.splice(i,1);
+		   		};
+		   	}
+		   	response.end(JSON.stringify(obj));
+		});
+		res.on('error', function (e) {
+		   	console.log("Got error: " + e.message);
+>>>>>>> master
 		});
 	});
 	console.log("---------------End of API function--------------");
@@ -88,6 +103,7 @@ function apiBackbone(response, query) {
 	http.get("http://api.civicapps.org/restaurant-inspections/near/" + lngLat + "?distance=2&count=20000", function (res) {
 		console.log("Got response: " + res.statusCode);
 		res.on('data', function (chunk) {
+<<<<<<< HEAD
 		body += chunk;
 		console.log("---------------Recieved a chunk of data from API--------------");
 		});
@@ -104,6 +120,24 @@ function apiBackbone(response, query) {
 			}
 			console.log("Array: " + arrBackbone);
 			response.end(JSON.stringify(arrBackbone));
+=======
+		   	body += chunk;
+		   	console.log("---------------Recieved a chunk of data from API--------------");
+		});
+		res.on('end', function () {
+			//console.log(body);
+		   	var obj = JSON.parse(body);
+		   	console.log("---------------closing connection with server--------------");
+		   	//removing inspections with the score of 0
+		   	for (var i = (obj.results.length - 1); i > -1; i--) {
+		   		if (obj.results[i].score == 0) {
+		   		} else {
+		   			obj.results[i].push(arrBackbone);
+		   		};
+		   	}
+		   	console.log("Array: " + arrBackbone);
+		   	response.end(arrBackbone);
+>>>>>>> master
 		});
 		res.on('error', function (e) {
 			console.log("Got error: " + e.message);

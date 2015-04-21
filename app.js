@@ -88,17 +88,24 @@ function initialize() {
 				infowindow.setContent('<h4>' + restaurants.results[i].name + '</h4> Score: ' +restaurants.results[i].score+ '<br><div class="inspectionNums" onClick="openReports(\''+inspectionNums+'\')"> Inspections reports: ' + restaurants.results[i].inspection_number+'</div>');
 				infowindow.open(map, marker);
 			}
+<<<<<<< HEAD
 		})(marker, i));
+=======
+         })(marker, i));
+>>>>>>> master
 		gMarkers.push(marker);
 	}
 }
 
+<<<<<<< HEAD
 function openReports(arrString) {
 	var inspection_numbers = arrString.split('_');
 	console.log(inspection_numbers);
 	console.log(arrString);
 }
 
+=======
+>>>>>>> master
 function getThis(marker) {
 	console.log("Clicked a result..." + marker);
 	google.maps.event.trigger(gMarkers[marker], "click");
