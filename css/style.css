@@ -46,24 +46,15 @@ body {
 	height: 756px;
 	overflow-y: auto;
 }
-<<<<<<< HEAD
 
 .restName {
 	font-weight: bold;
 }
 
-=======
-
-.restName {
-	font-weight: bold;
-}
-
->>>>>>> master
 .restScore {
 	float:right;
 	color: red;
 } 
-<<<<<<< HEAD
 
 .resultItem {
 	cursor:pointer;
@@ -72,9 +63,4 @@ body {
 .inspectionNums {
 	cursor:pointer;
 	text-decoration: underline;
-=======
-
-.resultItem {
-	cursor:pointer;
->>>>>>> master
 }
