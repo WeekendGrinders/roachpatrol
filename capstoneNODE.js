@@ -21,7 +21,7 @@ function api(response, query) {
 	console.log("lngLat: " + lngLat);
 
 	//making API GET request 
-	http.get("http://api.civicapps.org/restaurant-inspections/near/" + lngLat + "?distance=2&count=20000", function (res) {
+	http.get("http://api.civicapps.org/restaurant-inspections/near/" + lngLat + "?distance=0.5&count=20000", function (res) {
 		console.log("Got response: " + res.statusCode);
 		res.on('data', function (chunk) {
 		   	body += chunk;
@@ -37,6 +37,7 @@ function api(response, query) {
 		   			obj.results.splice(i,1);
 		   		};
 		   	}
+            delete obj.status;
 		   	response.end(JSON.stringify(obj));
 		});
 		res.on('error', function (e) {
@@ -78,11 +79,11 @@ function apiBackbone(response, query) {
 		   	for (var i = (obj.results.length - 1); i > -1; i--) {
 		   		if (obj.results[i].score == 0) {
 		   		} else {
-		   			obj.results[i].push(arrBackbone);
+		   			arrBackbone.push(obj.results[i]);
 		   		};
 		   	}
 		   	console.log("Array: " + arrBackbone);
-		   	response.end(arrBackbone);
+		   	response.end(JSON.stringify(arrBackbone));
 		});
 		res.on('error', function (e) {
 		   	console.log("Got error: " + e.message);

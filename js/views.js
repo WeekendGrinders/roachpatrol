@@ -1,6 +1,39 @@
-/**
- * Created by michaelt on 4/12/15.
- */
+app.RestaurantHomeView = Backbone.View.extend({
+    id: 'restaurantHome',
+    className: 'restaurantHomeView',
+    events: {
+        'click #goButton': 'submit',
+        'change #dropdown': 'setZipcode'
+    },
+    setZipcode: function() {
+        var zipcode = $(#dropdown).val();
+        return zipcode;
+    },
+    submit: function() {
+        this.getLatLng();
+    },
+    getLatLng: function(zipcode) {
+        geocoder = new google.maps.Geocoder();
+        geocoder.geocode({address: zipcode},
+            function(results, status){
+                if(status == google.maps.GeocoderStatus.OK) {
+                    zipLat = results[0].geometry.location.lat();
+                    console.log(zipLat);
+                    zipLng = results[0].geometry.location.lng();
+                    console.log(zipLng);
+
+                    //set lat and lng in the opt object from capstone.js
+                    opt = {"lat": zipLat, "lng": zipLng};
+                    zipLocation = {latitude: zipLat, longitude: zipLng};
+                    //make API GET request from capstone.js
+                    roachPatrol.go();
+                } else {
+                    //something went very wrong...
+                    alert('Geocode was not successful');
+                }
+            })
+    }
+});
 
 app.RestaurantMainView = Backbone.View.extend({
     id: 'restaurantMain',

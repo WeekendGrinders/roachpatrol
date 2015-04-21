@@ -8,7 +8,7 @@ app.templates.main = _.template(
 );
 
 app.templates.list = _.template(
-    '<li><h1>{{ name }}</h1><br><h2>Score: {{score}}</h2><br><h2>Style: {{style}}</h2></li>'
+    '<li><h1>{{ name }}</h1><br><h2>Score: </h2><br><h2>Style: {{style}}</h2></li>'
 );
 
 app.templates.restaurant = _.template(

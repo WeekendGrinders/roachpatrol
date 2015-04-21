@@ -12,7 +12,7 @@ app.Restaurant = Backbone.Model.extend({
 app.restaurant = new app.Restaurant({});
 
 app.RestaurantList = Backbone.Collection.extend({
-    url: 'localhost:8080/restaurants',
+    url: '/restaurants',
     model: app.Restaurant,
     initialize: function() {
         this.on('remove', this.hideModel);
