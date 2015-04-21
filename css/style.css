@@ -59,3 +59,8 @@ body {
 .resultItem {
 	cursor:pointer;
 }
+
+.inspectionNums {
+	cursor:pointer;
+	text-decoration: underline;
+}
