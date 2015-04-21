@@ -1,0 +1,46 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="1193" measuredH="610" mockupW="985" mockupH="597">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="208" y="13" w="985" h="597" measuredW="450" measuredH="400" zOrder="0" locked="true" isInGroup="-1">
+      <controlProperties>
+        <text>Roach%20Patrol</text>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::Button" x="750" y="250" w="-1" h="-1" measuredW="45" measuredH="27" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <href>resultScreen%26bm%3BresultScreen.bmml%26bm%3BresultScreen.bmml%26bm%3BresultScreen.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22542%2C237%2C587%2C264%22%20href%3D%22resultScreen.bmml%22%20alt%3D%22resultScreen%22%20id%3D%221%22/%3E</map>
+        <text>GO%21</text>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::ComboBox" x="606" y="251" w="-1" h="-1" measuredW="121" measuredH="24" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Pick%20a%20ZipCode</text>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::Icon" x="688" y="337" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <borderStyle>square</borderStyle>
+        <href>resultScreen%26bm%3BresultScreen.bmml%26bm%3BresultScreen.bmml%26bm%3BresultScreen.bmml</href>
+        <icon>GeoLocation2Icon%7Csmall</icon>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22480%2C324%2C504%2C348%22%20href%3D%22resultScreen.bmml%22%20alt%3D%22resultScreen%22%20id%3D%223%22/%3E</map>
+      </controlProperties>
+    </control>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::Label" x="616" y="301" w="-1" h="-1" measuredW="169" measuredH="21" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Or%20use%20your%20current%20location%3A</text>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::Label" x="629" y="134" w="-1" h="-1" measuredW="143" measuredH="32" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>true</bold>
+        <size>24</size>
+        <text>Roach%20Patrol</text>
+      </controlProperties>
+    </control>
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::Label" x="566" y="166" w="-1" h="-1" measuredW="269" measuredH="21" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Find%20the%20health%20rating%20for%20Portland%20restaurants</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
