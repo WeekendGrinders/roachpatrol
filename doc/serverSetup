@@ -1,0 +1,16 @@
+1) After building new server in RackSpace, ssh in as root: root@192.168.1.1
+
+2) Add new user:
+~# adduser username
+
+3) Add new user to sudoers
+~# visudo
+
+Logout from root account and log back in as the new user
+
+4) Install NGINX server
+~# sudo apt-get update
+~# sudo apt-get install nginx
+
+Check that the NGINX installation was successful by going to IP address in browser
+
