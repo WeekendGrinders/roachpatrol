@@ -7,7 +7,7 @@ var router = Router();
 var body = '';
 var body2 = '';
 
-//Call for inspection records around a certain LatLng
+//Call for inspection records around a certain LatLng...
 function api(response, query) {
 
 	//split query into lat long
