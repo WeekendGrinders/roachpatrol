@@ -47,15 +47,15 @@ function initialize() {
 
 	//setting center point and zoom level
 	var mapOptions = {
-    	zoom: 14,
-    	center: new google.maps.LatLng(zipLat, zipLng)
-  	};
+		zoom: 14,
+		center: new google.maps.LatLng(zipLat, zipLng)
+	};
   	
-  	//creating map
+	//creating map
 	var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-  	var marker;
-  	//Initialize infoWindows for the markers
+	var marker;
+	//Initialize infoWindows for the markers
 	var infowindow = new google.maps.InfoWindow();
 
 	//Close any open infoWindow if the map is clicked (don't want more than one open at a time)
@@ -84,12 +84,19 @@ function initialize() {
 		//open the infoWindow for the restaurant when a marker is clicked
 		google.maps.event.addListener(marker, 'click', (function(marker, i) {
 			return function() {
-			    infowindow.setContent("<h4>" + restaurants.results[i].name + "</h4> Score: " +restaurants.results[i].score);
-			    infowindow.open(map, marker);
+				var inspectionNums = restaurants.results[i].inspection_number.join('_');
+				infowindow.setContent('<h4>' + restaurants.results[i].name + '</h4> Score: ' +restaurants.results[i].score+ '<br><div class="inspectionNums" onClick="openReports(\''+inspectionNums+'\')"> Inspections reports: ' + restaurants.results[i].inspection_number+'</div>');
+				infowindow.open(map, marker);
 			}
-         })(marker, i));
+		})(marker, i));
 		gMarkers.push(marker);
 	}
+}
+
+function openReports(arrString) {
+	var inspection_numbers = arrString.split('_');
+	console.log(inspection_numbers);
+	console.log(arrString);
 }
 
 function getThis(marker) {
