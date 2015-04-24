@@ -68,7 +68,12 @@ function initialize() {
 
 	//loop through ajax results and place markers on the map for each restaurant
 	for(var i = 0; i < restaurants.results.length; i++) {
-		console.log('Lat: ' + restaurants.results[i].location.Latitude + ' ' + 'Long: ' +restaurants.results[i].location.Longitude+ 'Name:' +restaurants.results[i].name+ 'InspectionID :' +restaurants.results[i].inspection_number);
+		console.log(
+            'Name: ' + restaurants.results[i].name + '\n' +
+            'InspectionID: ' + restaurants.results[i].inspection_number + '\n' +
+            'Lat: ' + restaurants.results[i].location.Latitude + '\n' +
+            'Long: ' + restaurants.results[i].location.Longitude + '\n'
+        );
 		//show info in sidebar
 		$('.results').append('<div id="'+i+'" class="resultItem" onClick="getThis('+i+')"><span class="restName">' + restaurants.results[i].name + '</span><br><span class="restAddress">' + restaurants.results[i].address.street + '</span><span class="restScore"> Score:' + restaurants.results[i].score + '</span></div>');
 		if ((i%2) != 0) {
