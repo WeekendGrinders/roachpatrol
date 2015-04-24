@@ -3,14 +3,13 @@ app.RestaurantHomeView = Backbone.View.extend({
     className: 'restaurantHomeView',
     events: {
         'click #goButton': 'submit',
-        'change #dropdown': 'setZipcode'
     },
-    setZipcode: function() {
-        var zipcode = $(#dropdown).val();
-        return zipcode;
+    initialize: function() {
+
     },
     submit: function() {
-        this.getLatLng();
+        var zipcode = $('#zipList').val();
+        this.getLatLng(zipcode);
     },
     getLatLng: function(zipcode) {
         geocoder = new google.maps.Geocoder();
@@ -32,6 +31,10 @@ app.RestaurantHomeView = Backbone.View.extend({
                     alert('Geocode was not successful');
                 }
             })
+    },
+    render: function() {
+        var attributes = this.model.toJSON();
+        this.$el.html(app.templates.home(attributes));
     }
 });
 
@@ -54,9 +57,9 @@ app.RestaurantMainView = Backbone.View.extend({
 
 app.RestaurantView = Backbone.View.extend({
     tagName: 'li',
-    id: 'restaurant',
     className: 'restaurantView',
     initialize: function() {
+        this.id = this.el.id;
         this.model.on('hide', this.remove, this);
     },
     render: function() {
@@ -66,12 +69,18 @@ app.RestaurantView = Backbone.View.extend({
 });
 
 app.RestaurantListView = Backbone.View.extend({
+    tagName: 'ul',
     id: 'restaurantList',
     className: 'restaurantListView',
     collection: app.restaurantList,
     initialize: function() {
         this.collection.on('add', this.addRestaurant, this);
         this.collection.on('reset', this.addAll, this);
+        this.restaurants = [];
+        for (var i = 0; i < app.restaurantList.length; i++) {
+            var restaurant = new app.Restaurant({el: '#restaurant-' + i});
+            this.restaurants.push(restaurant);
+        }
     },
     addRestaurant: function(restaurant) {
         app.restaurantView = new app.RestaurantView({model: restaurant});
@@ -104,14 +113,17 @@ app.RestaurantDetailView = Backbone.View.extend({
     }
 });
 
-$(function() {
-    app.restaurantMainView = new app.RestaurantMainView({model: app.restaurant});
-    app.restaurantMainView.render();
-    console.log(app.restaurantMainView.el);
-    console.log(app.restaurantListView.el);
+//$(function() {
+//    app.restaurantHomeView = new app.RestaurantHomeView({model: app.restaurant});
+//    app.restaurantHomeView.render();
+//    $('#app').html(app.restaurantHomeView.el);
+    //app.restaurantMainView = new app.RestaurantMainView({model: app.restaurant});
+    //app.restaurantMainView.render();
+    //console.log(app.restaurantMainView.el);
+    //console.log(app.restaurantListView.el);
     //console.log(app.restaurantMapView.el);
     //console.log(app.restaurantDetailView.el);
     //app.restaurantListView = new app.RestaurantListView({collection: app.restaurantList});
     //app.restaurantListView.render();
     //console.log(app.restaurantListView.el);
-});
+//});
