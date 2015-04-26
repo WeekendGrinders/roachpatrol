@@ -12,15 +12,17 @@ function getLocation (){
 if (navigator.geolocation) {
 	// Use method getCurrentPosition to get coordinates
 		navigator.geolocation.getCurrentPosition(function (position) {
-		// Access them accordingly
+		// zipLat and zipLng assigned to global vars
 		zipLat = position.coords.latitude;
 		zipLng = position.coords.longitude;
 		});
+	} else {
+		alert('Geolocation not supported, please select zipcode from drop down menu');
 	}
 }
 
 
-
+//parses zip after form submission
 function getZip(url) {
 	var zipString = window.location.search.substring(1);
 	var variableArray = zipString.split('&');
