@@ -1,3 +1,26 @@
+var zipLat;
+var zipLng;
+var geocoder;
+var marker, i;
+var zipLocation = {};
+var gMarkers = [];
+
+
+
+//Get user's location from browser via HTML5
+function getLocation (){
+if (navigator.geolocation) {
+	// Use method getCurrentPosition to get coordinates
+		navigator.geolocation.getCurrentPosition(function (position) {
+		// Access them accordingly
+		zipLat = position.coords.latitude;
+		zipLng = position.coords.longitude;
+		});
+	}
+}
+
+
+
 function getZip(url) {
 	var zipString = window.location.search.substring(1);
 	var variableArray = zipString.split('&');
@@ -9,13 +32,6 @@ function getZip(url) {
 	}
 }
 	 
-var geocoder;
-var marker, i;
-var zipLat;
-var zipLng;
-
-var zipLocation = {};
-var gMarkers = [];
 
 function getLatLng() {
 	//Getting latLng of requested zipcode and storing them in zipLat and zipLng
